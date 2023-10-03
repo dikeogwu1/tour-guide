@@ -1,13 +1,929 @@
-body {
+/*
+=============== 
+Fonts
+===============
+*/
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap");
+
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  /* dark shades of primary color*/
+  --clr-primary-1: #1b7dff;
+  --clr-primary-2: #102746;
+  /* light shades of primary colors */
+  --clr-primary-3: #006dfe;
+  /* black and white used for paragraphs */
+  --clr-black: #000;
+  --clr-white: #fff;
+  --ff-primary: "Lato", sans-serif;
+  --ff-secondary: "Open Sans", sans-serif;
+  --transition: all 0.3s linear;
+  --spacing: 0.25rem;
+  --radius: 0.5rem;
+}
+/*
+=============== 
+Global Styles
+===============
+*/
+*,
+::after,
+::before {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--ff-primary);
+  background: var(--clr-white);
+  color: var(--clr-white);
+  line-height: 1.5;
+  font-size: 0.875rem;
+  position: relative;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+img:not(.logo) {
+  width: 100%;
+}
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+  font-family: var(--ff-primary);
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  margin-bottom: 1.25rem;
+  color: var(--clr-black);
+}
+
+/*  global classes */
+
+.btn {
+  display: inline-block;
+  background: transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+/* SINGLE STYLES */
+
+/* 
+==============
+HEADER SECTION
+==============
+*/
+
+/* nav */
+header {
+  height: 61.8125rem;
+  width: 100%;
+  background-image: url("https://res.cloudinary.com/dikeogwu1/image/upload/v1645106647/tours%20image/headerBackround_qzuyit.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+header::after {
+  content: "";
+  background: linear-gradient(
+    180deg,
+    rgba(53, 66, 103, 0.0001) 0%,
+    #151824 95.04%
+  );
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.nav-wrapper {
+  background: transparent;
+  transition: var(--transition);
+  padding: 1rem;
+}
+
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-header .logo,
+.nav-header .btn {
+  width: fit-content;
+}
+
+.logo {
+  color: var(--clr-white);
+  font-weight: 900;
+  letter-spacing: 0;
+  font-family: "Righteous", cursive;
+}
+
+/* links */
+
+.ul-wrapper {
+  position: relative;
+  z-index: 2;
+  height: 0px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.show-links {
+  height: 170px;
+}
+
+.ul-wrapper li {
+  letter-spacing: 0.1rem;
+}
+
+.ul-wrapper li a {
+  color: var(--clr-white);
+  font-size: 1.125rem;
+  font-weight: 300;
+  transition: var(--transition);
+  padding: 0.5rem 0;
+  display: block;
+}
+
+.ul-wrapper li a:hover {
+  color: var(--clr-white);
+  background: var(--clr-primary-1);
+  padding-left: 1rem;
+}
+.btn-menu {
+  color: var(--clr-white);
+  font-size: 1.5rem;
+  height: fit-content;
+  padding: 0.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* tour header descriptions */
+.header-desc-wrapper {
+  position: relative;
+  z-index: 2;
+  margin: 0 1rem;
+}
+.header-title {
+  font-weight: 500;
+  margin-top: 4rem;
+  font-size: 3.1rem;
+  font-weight: 500;
+  opacity: 0.9;
+  line-height: 3.75rem;
+  color: var(--clr-white);
+}
+.header-desc {
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  opacity: 0.7;
+  margin-bottom: 2.375rem;
+  color: var(--clr-white);
+}
+
+/* header form */
+form div:first-child {
+  margin-bottom: 1.5rem;
+}
+label {
+  display: flex;
+  justify-content: center;
+}
+.cirle {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  opacity: 0.7;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid var(--clr-white);
+}
+.f-label-text {
+  font-weight: 500;
+  font-size: 1.125rem;
+  margin-left: 1.4375rem;
+  opacity: 0.7;
+}
+input {
+  display: block;
+  background: transparent;
+  width: 100%;
+  height: 1.25rem;
+  border-top: none;
+  border-left: none;
+  font-size: 1.1rem;
+  border-right: none;
+  border-bottom: 2px solid var(--clr-white);
+  transition: var(--transition);
+}
+input:focus {
+  outline: none;
+  background-color: #ffffff8a;
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+.submit-form {
+  background-color: var(--clr-primary-1);
+  border: none;
+  color: var(--clr-white);
+  width: 10.6875rem;
+  height: 3.625rem;
+  font-size: 1.5rem;
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  transition: var(--transition);
+}
+.submit-form:hover {
+  color: var(--clr-primary-1);
+  background-color: var(--clr-white);
+}
+
+/* header overley */
+.overley-wrapper {
+  position: relative;
+  height: 60.9375rem;
+}
+.overley {
+  position: absolute;
+  background: var(--clr-white);
+  width: 92vw;
+  margin: 0 auto;
+  top: -130px;
+  left: 0;
+  right: 0;
+  color: var(--clr-black);
+}
+.overley h2 {
+  color: var(--clr-primary-2);
+  font-weight: 500;
+  font-size: 2.1875rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+}
+/* benefits of odigo */
+.benefits-wraper {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4.5rem;
+  text-align: center;
+}
+.benefit {
+  margin: 2.5rem 0;
+}
+.benefit-svg {
+  width: 4.125rem;
+  height: 4.125rem;
+  margin: 0 auto;
+}
+.benefit h4 {
+  color: var(--clr-black);
+  font-weight: 500;
+  font-size: 1.125rem;
+  margin-top: 2.25rem;
+  margin-bottom: 1.625rem;
+}
+.benefit p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.learn-more a {
+  color: var(--clr-primary-3);
+}
+.fa-right-long {
+  color: var(--clr-primary-3);
+  margin-left: 1.625rem;
+  font-size: 1.25rem;
+}
+
+/* 
+======================
+YOUR NEXT TRIP SECTION
+======================
+*/
+.next-trip-container {
+  width: 92vw;
+  margin: 0 auto;
+}
+.nt-title-wrapper {
+  margin-bottom: 2.875rem;
+}
+
+.nt-title-wrapper h3 {
+  color: var(--clr-primary-2);
+  font-weight: 500;
+  font-size: 2.1875rem;
+  position: relative;
+  margin-bottom: 2rem;
+}
+.nt-title-wrapper h3::after {
+  content: "";
+  width: 15.75rem;
+  height: 2px;
+  background: var(--clr-primary-3);
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+}
+.img-large {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+}
+.img-small {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+  margin-top: 0.625rem;
+}
+/* trip */
+.nt-img-box {
+  position: relative;
+  height: 22.125rem;
+}
+.nt-img-box-small {
+  height: 17.6875rem;
+}
+.nt-img-box::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 24, 36, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.trip-text {
+  position: absolute;
+  bottom: 27px;
+  left: 29px;
+  z-index: 2;
+  font-size: 3.125rem;
+  font-weight: bold;
+  color: var(--clr-white);
+}
+
+/* 
+=====================================
+MORE PLACE FOR YOUR NEXT TRIP SECTION
+=====================================
+*/
+.more-place-container {
+  width: 92vw;
+  margin: 0 auto;
+  margin-top: 6rem;
+}
+.more-place {
+  margin-bottom: 4rem;
+}
+.mp-topic-sm {
+  color: var(--clr-primary-2);
+  font-weight: 500;
+  font-size: 1.875rem;
+}
+.mp-topic-lg {
+  color: var(--clr-primary-2);
+  font-weight: 500;
+  font-size: 1.875rem;
+  display: none;
+}
+.mp-img-wrapper {
+  height: 21rem;
+}
+.mp-desc {
+  margin-top: 2rem;
+  color: var(--clr-primary-2);
+  font-size: 1.1rem;
+}
+
+/* 
+=================================
+TODAY TOP PLACES TO VISIT SECTION
+=================================
+*/
+.today-top-place-container {
+  width: 92vw;
+  margin: 0 auto;
+  margin-top: 6rem;
+}
+.today-top-place-container h3 {
+  color: var(--clr-primary-2);
+  font-weight: 500;
+  font-size: 2.1875rem;
+  position: relative;
+  margin-bottom: 2rem;
+}
+.today-top-place-container h3::after {
+  content: "";
+  width: 15.75rem;
+  height: 2px;
+  background: var(--clr-primary-3);
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+}
+.today-top-place-wrapper {
+  display: grid;
+  gap: 3.3125rem;
+}
+.ttp-img-box {
+  position: relative;
+  height: 22rem;
+}
+.ttp-img-footer {
+  width: 100%;
+  height: 3.4375rem;
+  background: rgba(21, 24, 36, 0.6);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  font-weight: 500;
+}
+.ttp-img-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fa-heart {
+  margin-left: 0.25rem;
+  margin-right: 0.875rem;
+}
+.fa-comment-alt {
+  margin-left: 0.25rem;
+}
+.ttp-text-box p {
+  color: var(--clr-primary-2);
+  margin-top: 2.8125rem;
+  margin-bottom: 1.9375rem;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+.see-more {
+  background: var(--clr-primary-3);
+  color: var(--clr-white);
+  border: none;
+  padding: 0.75rem 1.1rem;
+}
+
+/* 
+==================
+TOUR VIDEO SECTION
+==================
+*/
+.tour-video-container {
+  height: 25.0625rem;
+  margin-top: 9rem;
+  position: relative;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.tour-video-container::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 24, 36, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.play-btn-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  display: grid;
+  place-content: center;
+}
+.play-btn {
+  border-radius: 50%;
+  font-size: 2.5rem;
+  z-index: 2;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  background-color: var(--clr-white);
+}
+
+/* 
+==============
+FOOTER SECTION
+==============
+*/
+.footer {
+  background: #0e1d28;
+  height: 370px;
+  display: grid;
+  place-content: center;
+}
+.footer-wrapper {
+  width: 98vw;
+}
+.footer-logo {
+  color: var(--clr-primary-3);
+  font-size: 4rem;
+}
+.footer-link {
+  display: flex;
+  justify-content: space-between;
+}
+.social-media-links {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width: 290px) {
+  /* benefits of odigo */
+  .benefit p {
+    width: 19.8125rem;
+  }
+  /* footer */
+  .footer-wrapper {
+    width: 96vw;
+  }
+}
+@media screen and (min-width: 768px) {
+  /* header form */
+  form {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  /* 
+======================
+YOUR NEXT TRIP SECTION
+======================
+*/
+  .nt-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nt-title-wrapper h3 {
+    margin-bottom: 0;
+  }
+  .img-large {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.625rem;
+    row-gap: 0;
+  }
+  .img-small {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* 
+=====================================
+MORE PLACE FOR YOUR NEXT TRIP SECTION
+=====================================
+*/
+  .more-place {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 6.0625rem;
+    align-items: center;
+  }
+  .mp-topic-sm {
+    display: none;
+  }
+  .mp-topic-lg {
+    display: block;
+  }
+  .mp-desc {
+    margin-top: 5.3125rem;
+    margin-bottom: 3.625rem;
+  }
+  .mp-img-wrapper-2 {
+    order: 2;
+  }
+  .more-place-text {
+    order: 1;
+  }
+
+  /* 
+=================================
+TODAY TOP PLACES TO VISIT SECTION
+=================================
+*/
+  .today-top-place-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 
+==================
+TOUR VIDEO SECTION
+==================
+*/
+  .tour-video-container {
+    height: 32.0625rem;
+  }
+
+  /* 
+==============
+FOOTER SECTION
+==============
+*/
+  .footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 94vw;
+  }
+  .footer-links-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+  }
+  .footer-link {
+    width: 55%;
+  }
+  .social-media-links {
+    margin-top: 0;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
+
+  /* single stles */
+
+  .btn-menu {
+    display: none;
+  }
+
+  /* nav */
+  .nav {
+    margin: 4.25rem 9.25rem 0 9.25rem;
+  }
+  .nav-wrapper {
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+  /* links */
+  .ul-wrapper {
+    width: 46%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    height: auto !important;
+    overflow: visible;
+  }
+  .ul-wrapper li {
+    margin-bottom: 0;
+  }
+  .ul-wrapper li a {
+    padding: 0 1rem;
+  }
+  .ul-wrapper li a:hover {
+    color: #13e;
+    background: transparent;
+  }
+
+  /* tour header descriptions */
+  .header-desc-wrapper {
+    margin: 10.3125rem 9.25rem 0 9.25rem;
+  }
+  .header-title {
+    width: 39.0625rem;
+    height: 7.5625rem;
+    margin-top: 0;
+  }
+  .header-desc {
+    width: 34.125rem;
+    height: 4.5rem;
+    margin-bottom: 3.375rem;
+  }
+  /* header form */
+  form {
+    display: flex;
+    align-items: flex-end;
+    width: 85%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  /* header form */
+  form div:first-child {
+    margin-bottom: 0;
+  }
+  label {
+    justify-content: left;
+  }
+  input {
+    width: 18.5rem;
+  }
+  .submit-form {
+    display: inline;
+    margin: 0;
+    margin-top: 1.5rem;
+  }
+  /* header overley */
+  .overley {
+    width: 88vw;
+    top: -230px;
+    height: 40.9375rem;
+  }
+  .overley-wrapper {
+    height: 49.9375rem;
+  }
+  .overley h2 {
+    margin-top: 5.8125rem;
+    margin-left: 5.8125rem;
+    margin-right: 0;
+  }
+  /* benefits of odigo */
+  .benefits-wraper {
+    margin-left: 5.8125rem;
+    margin-right: 2rem;
+    margin-top: 7.5rem;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 88%;
+  }
+  .benefit-svg {
+    margin: 0;
+  }
+
+  /* 
+======================
+YOUR NEXT TRIP SECTION
+======================
+*/
+  .img-small {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+    row-gap: 0;
+  }
+
+  /* 
+==============
+FOOTER SECTION
+==============
+*/
+  .footer-wrapper {
+    width: 88vw;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* header overley */
+  .overley-wrapper {
+    height: 29.9375rem;
+  }
+
+  /* benefits of odigo */
+  .benefit {
+    margin: 0;
+  }
+  /* header form */
+  form {
+    margin: 0;
+  }
+  .submit-form {
+    margin-top: 0;
+  }
+  /* 
+======================
+YOUR NEXT TRIP SECTION
+======================
+*/
+  .next-trip-container {
+    width: 86vw;
+  }
+
+  /* 
+=====================================
+MORE PLACE FOR YOUR NEXT TRIP SECTION
+=====================================
+*/
+  .more-place-container {
+    width: 86vw;
+    margin-top: 9.25rem;
+  }
+
+  /* 
+=================================
+TODAY TOP PLACES TO VISIT SECTION
+=================================
+*/
+  .today-top-place-container {
+    width: 86vw;
+    margin-top: 7.6875rem;
+  }
+
+  /* 
+=================================
+TODAY TOP PLACES TO VISIT SECTION
+=================================
+*/
+  .today-top-place-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 
+==============
+FOOTER SECTION
+==============
+*/
+  .footer-wrapper {
+    width: 74vw;
+  }
+  .footer-links-wrapper {
+    width: 56%;
+  }
+}
+
+/*  */
+
+/* CSS for the tour guide */
+.assistant {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  /* background: url("assistant.gif") no-repeat center center; */
+  background-size: cover;
+  transition: all 0.5s ease;
+  z-index: 999;
+  pointer-events: none;
+}
+.assistant.active {
+  /* Add additional styles when the assistant is active (tour is running) */
+}
+
+.tourBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 50px;
+  background: #000;
+  color: #fff;
+  z-index: 20;
+  padding: 0.25rem;
+  border: none;
+  border-radius: 3px;
 }
