@@ -2,52 +2,53 @@ import React, { useState, useEffect } from "react";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 
 function TourGuide({ runTour, tourPosition, tourSteps }) {
-  console.log(tourPosition);
   const [assistantPosition, setAssistantPosition] = useState({
     top: 0,
     left: 0,
   });
 
   useEffect(() => {
-    // Find the current tour step by matching with the currentStepId
+    // Find the current tour step by matching with the tourPosition
     const currentStep = tourSteps.find(
-      (step) => step.target === tourSteps[tourPosition].target
+      (step) => step.target === tourSteps[tourPosition]?.target
     );
+
     if (currentStep) {
-      // Get the position of the target element of the current step
+      // Get the position of the target element of the current tour step
       const targetElement = document.querySelector(currentStep.target);
       const targetRect = targetElement.getBoundingClientRect();
-
+      const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const x = targetRect.left + scrollLeft;
+      const y = targetRect.top + scrollTop;
       // Calculate the new position for the assistant
       const newAssistantPosition = {
-        top: targetRect.top - 60, // Adjust the top position as needed
-        left: targetRect.left - 120,
+        top: y,
+        left: x,
       };
-
       // Update the assistant's position
       setAssistantPosition(newAssistantPosition);
+    } else {
+      // Calculate the new position for the assistant
+      const newAssistantPosition = {
+        position: "fixed",
+        top: 450,
+        left: 10,
+      };
+      setAssistantPosition(newAssistantPosition);
     }
-  }, [runTour, tourSteps]);
-
-  // Update the current step when tourSteps change
-  // useEffect(() => {
-  //   if (tourSteps.length > 0 && !currentStepId) {
-  //     setCurrentStepId(tourSteps[1].target); // Initialize with the first step if currentStepId is null
-  //   }
-  // }, [tourSteps, currentStepId]);
-  // console.log(currentStepId);
-
-  // Update the current step when tourSteps change
+  }, [tourPosition]);
 
   return (
     <>
-      <div>
+      <div
+        style={assistantPosition}
+        className={`assistant ${runTour ? "active" : ""}`}
+      >
         <Player
           autoplay
           loop
           src='https://lottie.host/4e40ae60-6aaa-4090-ad31-3517f6cb6d29/p5B7IeG7Nb.json'
-          className={`assistant ${runTour ? "active" : ""}`}
-          style={{ top: assistantPosition.top, left: assistantPosition.left }}
         >
           <Controls
             visible={false}

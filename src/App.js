@@ -3,7 +3,7 @@ import TourGuide from "./TourGuide";
 import Joyride from "react-joyride";
 
 function App() {
-  const [tourPosition, setTourPosition] = useState(1);
+  const [tourPosition, setTourPosition] = useState(null);
   const [tourSteps, setTourSteps] = useState([
     {
       target: "#step-1",
@@ -33,7 +33,7 @@ function App() {
     {
       target: "#step-7",
       content:
-        "Follow us on all our social media accounts, best travel updates.",
+        "Follow us on all our social media accounts, for best travel updates.",
     },
     // Add more tour steps as needed
   ]);
@@ -41,11 +41,13 @@ function App() {
   const [runTour, setRunTour] = useState(false);
 
   const handleTourCallback = (data) => {
-    // You can handle tour events here
-    console.log(data);
-    if (data.action.index === "ready" || data.action.index === "complete") {
+    if (data.action === "next" || data.action === "update") {
       // Update the current step when a step is completed
-      setTourPosition();
+      setTourPosition(data.index);
+    }
+    if (data.action === "stop") {
+      // Update the current step when a step is completed
+      setTourPosition(null);
     }
     if (data.action === "reset") {
       setRunTour(false);
@@ -59,10 +61,13 @@ function App() {
   }, []);
 
   return (
-    <>
-      <button onClick={() => setRunTour(true)} className='tourBtn'>
-        Start Tour
-      </button>
+    <div className='box'>
+      <TourGuide
+        runTour={runTour}
+        tourPosition={tourPosition}
+        tourSteps={tourSteps}
+      />
+
       {/* Render the Joyride component for the tour */}
       <Joyride
         steps={tourSteps}
@@ -72,11 +77,9 @@ function App() {
       />
       {/* JOYRIDE */}
       <header id='home'>
-        <TourGuide
-          runTour={runTour}
-          tourPosition={tourPosition}
-          tourSteps={tourSteps}
-        />
+        <button onClick={() => setRunTour(true)} className='tourBtn'>
+          Start Tour
+        </button>
         <nav className='nav'>
           <div className='nav-wrapper'>
             <div className='nav-header'>
@@ -518,7 +521,7 @@ function App() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

@@ -915,7 +915,6 @@ FOOTER SECTION
 .assistant.active {
   /* Add additional styles when the assistant is active (tour is running) */
 }
-
 .tourBtn {
   position: fixed;
   left: 20px;
@@ -926,4 +925,7 @@ FOOTER SECTION
   padding: 0.25rem;
   border: none;
   border-radius: 3px;
+}
+.box {
+  position: relative;
 }
